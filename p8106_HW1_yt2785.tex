@@ -1,0 +1,596 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{p8106\_hw1\_yt2785}
+\author{Yijing Tao yt2785}
+\date{}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={p8106\_hw1\_yt2785},
+  pdfauthor={Yijing Tao yt2785},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{fancyhdr}
+\usepackage{lipsum}
+\pagestyle{fancy}
+\fancyhead[R]{\thepage}
+\fancypagestyle{plain}{\pagestyle{fancy}}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.4     v dplyr   1.0.7
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   2.0.1     v forcats 0.5.1
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ISLR)}
+\FunctionTok{library}\NormalTok{(glmnet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 载入需要的程辑包：Matrix
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'Matrix'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:tidyr':
+## 
+##     expand, pack, unpack
+\end{verbatim}
+
+\begin{verbatim}
+## Loaded glmnet 4.1-3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(caret)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 载入需要的程辑包：lattice
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'caret'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:purrr':
+## 
+##     lift
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## corrplot 0.92 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(plotmo)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 载入需要的程辑包：Formula
+\end{verbatim}
+
+\begin{verbatim}
+## 载入需要的程辑包：plotrix
+\end{verbatim}
+
+\begin{verbatim}
+## 载入需要的程辑包：TeachingDemos
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(FNN) }\CommentTok{\# knn.reg()}
+\FunctionTok{library}\NormalTok{(doBy) }\CommentTok{\# which.minn()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'doBy'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     order_by
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(pls)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'pls'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:corrplot':
+## 
+##     corrplot
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:caret':
+## 
+##     R2
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     loadings
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train\_df }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./housing\_training.csv"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{na.omit}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 1440 Columns: 26
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (4): Overall_Qual, Kitchen_Qual, Fireplace_Qu, Exter_Qual
+## dbl (22): Gr_Liv_Area, First_Flr_SF, Second_Flr_SF, Total_Bsmt_SF, Low_Qual_...
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(Sale\_Price}\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., train\_df)[ ,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{] }
+
+\NormalTok{test\_df }\OtherTok{=} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"./housing\_test.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 959 Columns: 26
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr  (4): Overall_Qual, Kitchen_Qual, Fireplace_Qu, Exter_Qual
+## dbl (22): Gr_Liv_Area, First_Flr_SF, Second_Flr_SF, Total_Bsmt_SF, Low_Qual_...
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \FunctionTok{data.frame}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{na.omit}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## data frame with 0 columns and 0 rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{test\_matrix }\OtherTok{\textless{}{-}} \FunctionTok{model.matrix}\NormalTok{(Sale\_Price}\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., test\_df)[ ,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{] }
+  
+\CommentTok{\# matrix of predictors (glmnet uses input matrix)}
+\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ train\_matrix}
+\CommentTok{\# vector of response}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ train\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{a-fit-a-linear-model-using-least-squares-on-the-training-data.-is-there-any-potential-disadvantage-of-this-model}{%
+\subsection{a) Fit a linear model using least squares on the training
+data. Is there any potential disadvantage of this
+model?}\label{a-fit-a-linear-model-using-least-squares-on-the-training-data.-is-there-any-potential-disadvantage-of-this-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm.fit}\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(Sale\_Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{train\_df)}
+
+\NormalTok{lm.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lm.fit, }\AttributeTok{newdata =}\NormalTok{ test\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in predict.lm(lm.fit, newdata = test_df): prediction from a rank-
+## deficient fit may be misleading
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# test error}
+\NormalTok{test\_error\_lm }\OtherTok{=} \FunctionTok{mean}\NormalTok{((lm.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_lm }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_lm, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{The potential disadvantage of this model might be the
+correlation between different predictors.Although the adjusted R square
+is high in this model, there might be over fitting in this model.}
+
+\hypertarget{b-fit-a-lasso-model-on-the-training-data-and-report-the-test-error.-when-the-1se-rule-is-applied-how-many-predictors-are-included-in-the-model}{%
+\subsection{b) Fit a lasso model on the training data and report the
+test error. When the 1SE rule is applied, how many predictors are
+included in the
+model?}\label{b-fit-a-lasso-model-on-the-training-data-and-report-the-test-error.-when-the-1se-rule-is-applied-how-many-predictors-are-included-in-the-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ctrl1 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{, }\AttributeTok{selectionFunction =} \StringTok{"best"}\NormalTok{)}
+\NormalTok{lasso.fit }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(x, y,}
+                   \AttributeTok{method =} \StringTok{"glmnet"}\NormalTok{,}
+                   \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \DecValTok{1}\NormalTok{, }
+                                          \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{length=}\DecValTok{100}\NormalTok{))),}
+                   \AttributeTok{trControl =}\NormalTok{ ctrl1)}
+
+\FunctionTok{summary}\NormalTok{(lasso.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Length Class      Mode     
+## a0            79   -none-     numeric  
+## beta        3081   dgCMatrix  S4       
+## df            79   -none-     numeric  
+## dim            2   -none-     numeric  
+## lambda        79   -none-     numeric  
+## dev.ratio     79   -none-     numeric  
+## nulldev        1   -none-     numeric  
+## npasses        1   -none-     numeric  
+## jerr           1   -none-     numeric  
+## offset         1   -none-     logical  
+## call           5   -none-     call     
+## nobs           1   -none-     numeric  
+## lambdaOpt      1   -none-     numeric  
+## xNames        39   -none-     character
+## problemType    1   -none-     character
+## tuneValue      2   data.frame list     
+## obsLevels      1   -none-     logical  
+## param          0   -none-     list
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lasso.fit, }\AttributeTok{xTrans =}\NormalTok{ log)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8106_HW1_yt2785_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lasso.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lasso.fit, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
+\CommentTok{\# test error}
+\NormalTok{test\_error\_lasso }\OtherTok{=} \FunctionTok{mean}\NormalTok{((lasso.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_lasso }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_lasso, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{From the plot we can tell that when only 4 parameters are
+included, the RMES is minimized, so 4 predictors are included in the
+model when 1SE rule is applied.}
+
+\hypertarget{c-fit-an-elastic-net-model-on-the-training-data.-report-the-selected-tuning-parameters-and-the-test-error.}{%
+\subsection{c) Fit an elastic net model on the training data. Report the
+selected tuning parameters and the test
+error.}\label{c-fit-an-elastic-net-model-on-the-training-data.-report-the-selected-tuning-parameters-and-the-test-error.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ctrl2 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"repeatedcv"}\NormalTok{, }\AttributeTok{number =} \DecValTok{10}\NormalTok{, }\AttributeTok{repeats =} \DecValTok{5}\NormalTok{)}
+\NormalTok{enet.fit }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(x, y,}
+                  \AttributeTok{method =} \StringTok{"glmnet"}\NormalTok{,}
+                  \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{length =} \DecValTok{21}\NormalTok{), }
+                                         \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{2}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{length =} \DecValTok{50}\NormalTok{))),}
+                  \AttributeTok{trControl =}\NormalTok{ ctrl2)}
+\NormalTok{enet.fit}\SpecialCharTok{$}\NormalTok{bestTune}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     alpha   lambda
+## 150   0.1 7.389056
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#coef(enet.fit$finalModel, enet.fit$bestTune$lambda)}
+
+\NormalTok{enet.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(enet.fit, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
+\CommentTok{\# test error}
+\NormalTok{test\_error\_enet }\OtherTok{=} \FunctionTok{mean}\NormalTok{((enet.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_enet }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_enet, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{The selected best parameter is alpha = 0.05 and lambda = 7.39.
+The test error is \ensuremath{4.4253784\times 10^{8}}.}
+
+\hypertarget{d-fit-a-partial-least-squares-model-on-the-training-data-and-report-the-test-error.-how-many-components-are-included-in-your-model}{%
+\subsection{d) Fit a partial least squares model on the training data
+and report the test error. How many components are included in your
+model?}\label{d-fit-a-partial-least-squares-model-on-the-training-data-and-report-the-test-error.-how-many-components-are-included-in-your-model}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pls.mod }\OtherTok{\textless{}{-}} \FunctionTok{plsr}\NormalTok{(Sale\_Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
+                \AttributeTok{data =}\NormalTok{ train\_df, }
+                \AttributeTok{scale =} \ConstantTok{TRUE}\NormalTok{,  }
+                \AttributeTok{validation =} \StringTok{"CV"}\NormalTok{)}
+
+\FunctionTok{summary}\NormalTok{(pls.mod)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Data:    X dimension: 1440 39 
+##  Y dimension: 1440 1
+## Fit method: kernelpls
+## Number of components considered: 39
+## 
+## VALIDATION: RMSEP
+## Cross-validated using 10 random segments.
+##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
+## CV           73685    33483    27934    25150    23974    23316    23145
+## adjCV        73685    33473    27898    25077    23907    23253    23088
+##        7 comps  8 comps  9 comps  10 comps  11 comps  12 comps  13 comps
+## CV       23057    23005    22984     22997     22997     22990     22998
+## adjCV    23001    22952    22931     22940     22939     22932     22939
+##        14 comps  15 comps  16 comps  17 comps  18 comps  19 comps  20 comps
+## CV        23007     23009     23015     23018     23019     23026     23030
+## adjCV     22948     22949     22954     22958     22959     22965     22969
+##        21 comps  22 comps  23 comps  24 comps  25 comps  26 comps  27 comps
+## CV        23032     23034     23033     23034     23034     23034     23036
+## adjCV     22970     22972     22971     22972     22972     22972     22974
+##        28 comps  29 comps  30 comps  31 comps  32 comps  33 comps  34 comps
+## CV        23036     23036     23036     23036     23036     23036     23036
+## adjCV     22974     22974     22974     22974     22974     22974     22974
+##        35 comps  36 comps  37 comps  38 comps  39 comps
+## CV        23036     23036     23036     23036     23081
+## adjCV     22974     22974     22974     22974     23003
+## 
+## TRAINING: % variance explained
+##             1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
+## X             20.02    25.93    29.67    33.59    37.01    40.03    42.49
+## Sale_Price    79.73    86.35    89.36    90.37    90.87    90.99    91.06
+##             8 comps  9 comps  10 comps  11 comps  12 comps  13 comps  14 comps
+## X             45.53    47.97     50.15     52.01     53.69     55.35     56.86
+## Sale_Price    91.08    91.10     91.13     91.15     91.15     91.16     91.16
+##             15 comps  16 comps  17 comps  18 comps  19 comps  20 comps
+## X              58.64     60.01     62.18     63.87     65.26     67.10
+## Sale_Price     91.16     91.16     91.16     91.16     91.16     91.16
+##             21 comps  22 comps  23 comps  24 comps  25 comps  26 comps
+## X              68.44     70.12     71.72     73.35     75.20     77.27
+## Sale_Price     91.16     91.16     91.16     91.16     91.16     91.16
+##             27 comps  28 comps  29 comps  30 comps  31 comps  32 comps
+## X              78.97     80.10     81.83     83.55     84.39     86.34
+## Sale_Price     91.16     91.16     91.16     91.16     91.16     91.16
+##             33 comps  34 comps  35 comps  36 comps  37 comps  38 comps
+## X              88.63     90.79     92.79     95.45     97.49    100.00
+## Sale_Price     91.16     91.16     91.16     91.16     91.16     91.16
+##             39 comps
+## X             100.67
+## Sale_Price     91.16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{validationplot}\NormalTok{(pls.mod, }\AttributeTok{val.type=}\StringTok{"MSEP"}\NormalTok{, }\AttributeTok{legendpos =} \StringTok{"topright"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8106_HW1_yt2785_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv.mse }\OtherTok{\textless{}{-}} \FunctionTok{RMSEP}\NormalTok{(pls.mod)}
+\NormalTok{ncomp.cv }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(cv.mse}\SpecialCharTok{$}\NormalTok{val[}\DecValTok{1}\NormalTok{,,])}\SpecialCharTok{{-}}\DecValTok{1}
+\NormalTok{ncomp.cv}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 9 comps 
+##       9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predy2.pls }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(pls.mod, }\AttributeTok{newdata =}\NormalTok{ test\_df, }
+                      \AttributeTok{ncomp =}\NormalTok{ ncomp.cv)}
+\CommentTok{\# test MSE}
+\NormalTok{test\_error\_pls }\OtherTok{=} \FunctionTok{mean}\NormalTok{((predy2.pls }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_pls }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_pls, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{14 components are included in the model.}
+
+\hypertarget{e-which-model-will-you-choose-for-predicting-the-response-why}{%
+\subsection{e) Which model will you choose for predicting the response?
+Why?}\label{e-which-model-will-you-choose-for-predicting-the-response-why}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mse }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(test\_error\_lm, test\_error\_lasso, test\_error\_enet, test\_error\_pls)}
+\NormalTok{name }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"lm"}\NormalTok{, }\StringTok{"lasso"}\NormalTok{, }\StringTok{"enet"}\NormalTok{, }\StringTok{"pls"}\NormalTok{)}
+\NormalTok{MSE\_df }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(name, mse)}
+\FunctionTok{colnames}\NormalTok{(MSE\_df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"model"}\NormalTok{, }\StringTok{"MSE"}\NormalTok{)}
+\NormalTok{MSE\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(MSE\_df)}
+\NormalTok{MSE\_df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   model         MSE
+## 1    lm 447287651.9
+## 2 lasso 437989359.2
+## 3  enet 442537839.8
+## 4   pls 442142569.1
+\end{verbatim}
+
+\textbf{I will choose the lasso model based on 1SE rule since it's
+average MSE is the smallest among these 3 models, which means it has the
+highest accuracy and efficiency.}
+
+\end{document}

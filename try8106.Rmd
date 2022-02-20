@@ -1,0 +1,22 @@
+---
+title: "p8106_hw1_yt2785"
+author: "Yijing Tao yt2785"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(ISLR)
+library(glmnet)
+library(caret)
+library(corrplot)
+library(plotmo)
+library(FNN) # knn.reg()
+library(doBy) # which.minn()
+library(pls)
+```
+

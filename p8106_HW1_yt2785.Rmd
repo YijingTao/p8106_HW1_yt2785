@@ -1,0 +1,129 @@
+---
+title: "p8106_hw1_yt2785"
+author: "Yijing Tao yt2785"
+output:
+  html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(ISLR)
+library(glmnet)
+library(caret)
+library(corrplot)
+library(plotmo)
+library(FNN) # knn.reg()
+library(doBy) # which.minn()
+library(pls)
+```
+
+```{r}
+train_df = read_csv("./housing_training.csv") %>% 
+  data.frame() %>% 
+  na.omit()
+train_matrix <- model.matrix(Sale_Price~ ., train_df)[ ,-1] 
+
+test_df = read_csv("./housing_test.csv")
+  data.frame() %>% 
+  na.omit()
+test_matrix <- model.matrix(Sale_Price~ ., test_df)[ ,-1] 
+  
+# matrix of predictors (glmnet uses input matrix)
+x <- train_matrix
+# vector of response
+y <- train_df$Sale_Price
+
+set.seed(1)
+```
+
+## a) Fit a linear model using least squares on the training data. Is there any potential disadvantage of this model?
+
+```{r}
+lm.fit<-lm(Sale_Price ~ ., data=train_df)
+
+lm.pred <- predict(lm.fit, newdata = test_df)
+# test error
+test_error_lm = mean((lm.pred - test_df$Sale_Price)^2)
+test_error_lm = round(test_error_lm, 1)
+```
+**The potential disadvantage of this model might be the correlation between different predictors.Although the adjusted R square is high in this model, there might be over fitting in this model.**
+
+## b) Fit a lasso model on the training data and report the test error. When the 1SE rule is applied, how many predictors are included in the model?
+
+```{r}
+ctrl1 <- trainControl(method = "cv", selectionFunction = "best")
+lasso.fit <- train(x, y,
+                   method = "glmnet",
+                   tuneGrid = expand.grid(alpha = 1, 
+                                          lambda = exp(seq(5, -1, length=100))),
+                   trControl = ctrl1)
+
+summary(lasso.fit)
+
+plot(lasso.fit, xTrans = log)
+lasso.pred <- predict(lasso.fit, newdata = test_matrix)
+# test error
+test_error_lasso = mean((lasso.pred - test_df$Sale_Price)^2)
+test_error_lasso = round(test_error_lasso, 1)
+```
+**From the plot we can tell that when only 4 parameters are included, the RMES is minimized, so 4 predictors are included in the model when 1SE rule is applied.**
+
+
+## c) Fit an elastic net model on the training data. Report the selected tuning parameters and the test error.
+
+```{r}
+ctrl2 <- trainControl(method = "repeatedcv", number = 10, repeats = 5)
+enet.fit <- train(x, y,
+                  method = "glmnet",
+                  tuneGrid = expand.grid(alpha = seq(0, 1, length = 21), 
+                                         lambda = exp(seq(2, -2, length = 50))),
+                  trControl = ctrl2)
+enet.fit$bestTune
+
+#coef(enet.fit$finalModel, enet.fit$bestTune$lambda)
+
+enet.pred <- predict(enet.fit, newdata = test_matrix)
+# test error
+test_error_enet = mean((enet.pred - test_df$Sale_Price)^2)
+test_error_enet = round(test_error_enet, 1)
+```
+**The selected best parameter is alpha = 0.05 and lambda = 7.39. The test error is `r test_error_enet`.**
+
+## d) Fit a partial least squares model on the training data and report the test error. How many components are included in your model?
+
+```{r}
+pls.mod <- plsr(Sale_Price ~ ., 
+                data = train_df, 
+                scale = TRUE,  
+                validation = "CV")
+
+summary(pls.mod)
+validationplot(pls.mod, val.type="MSEP", legendpos = "topright")
+
+cv.mse <- RMSEP(pls.mod)
+ncomp.cv <- which.min(cv.mse$val[1,,])-1
+ncomp.cv
+
+predy2.pls <- predict(pls.mod, newdata = test_df, 
+                      ncomp = ncomp.cv)
+# test MSE
+test_error_pls = mean((predy2.pls - test_df$Sale_Price)^2)
+test_error_pls = round(test_error_pls, 1)
+```
+**14 components are included in the model.**
+
+## e) Which model will you choose for predicting the response? Why?
+
+```{r}
+mse <- c(test_error_lm, test_error_lasso, test_error_enet, test_error_pls)
+name <- c("lm", "lasso", "enet", "pls")
+MSE_df <- cbind(name, mse)
+colnames(MSE_df) <- c("model", "MSE")
+MSE_df <- as.data.frame(MSE_df)
+MSE_df
+```
+**I will choose the lasso model based on 1SE rule since it's average MSE is the smallest among these 3 models, which means it has the highest accuracy and efficiency.**
