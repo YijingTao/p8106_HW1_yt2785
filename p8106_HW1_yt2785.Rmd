@@ -2,7 +2,7 @@
 title: "p8106_hw1_yt2785"
 author: "Yijing Tao yt2785"
 output:
-  html_document
+  pdf_document
 ---
 
 ```{r setup, include=FALSE}
