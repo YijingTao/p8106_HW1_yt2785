@@ -50,6 +50,7 @@ lm.pred <- predict(lm.fit, newdata = test_df)
 test_error_lm = mean((lm.pred - test_df$Sale_Price)^2)
 test_error_lm = round(test_error_lm, 1)
 ```
+**The test error of the LS linear model is `r test_error_lm`. \**
 **The potential disadvantage of this model might be the correlation between different predictors.Although the adjusted R square is high in this model, there might be over fitting in this model.**
 
 ## b) Fit a lasso model on the training data and report the test error. When the 1SE rule is applied, how many predictors are included in the model?
@@ -70,7 +71,7 @@ lasso.pred <- predict(lasso.fit, newdata = test_matrix)
 test_error_lasso = mean((lasso.pred - test_df$Sale_Price)^2)
 test_error_lasso = round(test_error_lasso, 1)
 ```
-**From the plot we can tell that when only 4 parameters are included, the RMES is minimized, so 4 predictors are included in the model when 1SE rule is applied.**
+**From the plot we can tell that when only 4 parameters are included, the RMES is minimized, so 4 predictors are included in the model when 1SE rule is applied. The test error of this model is `r test_error_lasso`**
 
 
 ## c) Fit an elastic net model on the training data. Report the selected tuning parameters and the test error.
@@ -91,7 +92,7 @@ enet.pred <- predict(enet.fit, newdata = test_matrix)
 test_error_enet = mean((enet.pred - test_df$Sale_Price)^2)
 test_error_enet = round(test_error_enet, 1)
 ```
-**The selected best parameter is alpha = 0.05 and lambda = 7.39. The test error is `r test_error_enet`.**
+**The selected best parameter is alpha = 0.1 and lambda = 7.39. The test error is `r test_error_enet`.**
 
 ## d) Fit a partial least squares model on the training data and report the test error. How many components are included in your model?
 
@@ -114,7 +115,7 @@ predy2.pls <- predict(pls.mod, newdata = test_df,
 test_error_pls = mean((predy2.pls - test_df$Sale_Price)^2)
 test_error_pls = round(test_error_pls, 1)
 ```
-**14 components are included in the model.**
+**14 components are included in the model. The test error of this model is `r test_error_pls`.**
 
 ## e) Which model will you choose for predicting the response? Why?
 
@@ -122,7 +123,7 @@ test_error_pls = round(test_error_pls, 1)
 mse <- c(test_error_lm, test_error_lasso, test_error_enet, test_error_pls)
 name <- c("lm", "lasso", "enet", "pls")
 MSE_df <- cbind(name, mse)
-colnames(MSE_df) <- c("model", "MSE")
+colnames(MSE_df) <- c("Model", "MSE")
 MSE_df <- as.data.frame(MSE_df)
 MSE_df
 ```
