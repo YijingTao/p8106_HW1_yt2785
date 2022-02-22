@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.16)  19 FEB 2022 11:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2022.2.16)  22 FEB 2022 14:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -393,64 +393,33 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@height=\dimen164
 \Gin@req@width=\dimen165
 )
-(c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr
-.sty
-Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
-rs
-\f@nch@headwidth=\skip54
-\f@nch@O@elh=\skip55
-\f@nch@O@erh=\skip56
-\f@nch@O@olh=\skip57
-\f@nch@O@orh=\skip58
-\f@nch@O@elf=\skip59
-\f@nch@O@erf=\skip60
-\f@nch@O@olf=\skip61
-\f@nch@O@orf=\skip62
-)
-(c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.sty
-
-(c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3packages/l3keys
-2e/l3keys2e.sty
-(c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.st
-y
-Package: expl3 2022-02-05 L3 programming layer (loader) 
-
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3backe
 nd-pdftex.def
 File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count287
 \l__pdf_internal_box=\box53
-))
-Package: l3keys2e 2022-01-12 LaTeX2e option processing using LaTeX3 keys
 )
-Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count288
-\l__lipsum_a_int=\count289
-\l__lipsum_b_int=\count290
-
-(c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lipsum/lipsum.ltd
-.tex))
 No file p8106_HW1_yt2785.aux.
 \openout1 = `p8106_HW1_yt2785.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 110.
+LaTeX Font Info:    ... okay on input line 110.
 
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epst
 opdf-base.sty
@@ -463,7 +432,7 @@ pdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 115.
+Package hyperref Info: Link coloring OFF on input line 110.
 
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.
 sty
@@ -477,11 +446,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count291
+\c@section@level=\count288
 )
-LaTeX Info: Redefining \ref on input line 115.
-LaTeX Info: Redefining \pageref on input line 115.
-LaTeX Info: Redefining \nameref on input line 115.
+LaTeX Info: Redefining \ref on input line 110.
+LaTeX Info: Redefining \pageref on input line 110.
+LaTeX Info: Redefining \nameref on input line 110.
 \@outlinefile=\write4
 \openout4 = `p8106_HW1_yt2785.out'.
 
@@ -520,46 +489,43 @@ LaTeX Info: Redefining \nameref on input line 115.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-17.
+12.
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-17.
+12.
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-117.
+112.
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-117.
+112.
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 117.
+(Font)              <12> on input line 112.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 117.
+(Font)              <8> on input line 112.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 117.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117
+(Font)              <6> on input line 112.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 112
 .
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117
+LaTeX Font Info:    Trying to load font information for U+msb on input line 112
 .
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-\tf@toc=\write5
-\openout5 = `p8106_HW1_yt2785.toc'.
-
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-23.
+14.
 (c:/Users/Lenovo/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -571,15 +537,15 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.154 \end{verbatim}
+l.145 \end{verbatim}
                      
 Here is how much of TeX's memory you used:
- 11537 strings out of 480238
- 185255 string characters out of 5894189
- 551282 words of memory out of 5000000
- 29317 multiletter control sequences out of 15000+600000
- 496839 words of font info for 50 fonts, out of 8000000 for 9000
+ 10909 strings out of 480238
+ 171455 string characters out of 5894189
+ 453056 words of memory out of 5000000
+ 28709 multiletter control sequences out of 15000+600000
+ 490842 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 68i,6n,77p,250b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,6n,63p,250b,270s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

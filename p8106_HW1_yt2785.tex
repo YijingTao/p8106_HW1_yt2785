@@ -4,10 +4,6 @@
 %
 \documentclass[
 ]{article}
-\title{p8106\_hw1\_yt2785}
-\author{Yijing Tao yt2785}
-\date{}
-
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -103,22 +99,17 @@
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{-\maxdimen} % remove section numbering
-\usepackage{fancyhdr}
-\usepackage{lipsum}
-\pagestyle{fancy}
-\fancyhead[R]{\thepage}
-\fancypagestyle{plain}{\pagestyle{fancy}}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 
+\title{p8106\_hw1\_yt2785}
+\author{Yijing Tao yt2785}
+\date{}
+
 \begin{document}
 \maketitle
 
-{
-\setcounter{tocdepth}{2}
-\tableofcontents
-}
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(tidyverse)}
@@ -334,7 +325,8 @@
 \CommentTok{\# vector of response}
 \NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ train\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price}
 
-\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{ctrl1 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{, }\AttributeTok{selectionFunction =} \StringTok{"oneSE"}\NormalTok{)}
+\NormalTok{ctrl2 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"repeatedcv"}\NormalTok{, }\AttributeTok{number =} \DecValTok{10}\NormalTok{, }\AttributeTok{repeats =} \DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -345,8 +337,72 @@ model?}\label{a-fit-a-linear-model-using-least-squares-on-the-training-data.-is-
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lm.fit}\OtherTok{\textless{}{-}}\FunctionTok{lm}\NormalTok{(Sale\_Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data=}\NormalTok{train\_df)}
+\NormalTok{lm.fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Sale\_Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }\AttributeTok{data =}\NormalTok{ train\_df)}
+\FunctionTok{summary}\NormalTok{(lm.fit)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Sale_Price ~ ., data = train_df)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -89864 -12424    416  12143 140205 
+## 
+## Coefficients: (1 not defined because of singularities)
+##                              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)                -4.985e+06  3.035e+06  -1.642  0.10076    
+## Gr_Liv_Area                 2.458e+01  1.393e+01   1.765  0.07778 .  
+## First_Flr_SF                4.252e+01  1.409e+01   3.017  0.00260 ** 
+## Second_Flr_SF               4.177e+01  1.379e+01   3.029  0.00250 ** 
+## Total_Bsmt_SF               3.519e+01  2.744e+00  12.827  < 2e-16 ***
+## Low_Qual_Fin_SF                    NA         NA      NA       NA    
+## Wood_Deck_SF                1.202e+01  4.861e+00   2.474  0.01350 *  
+## Open_Porch_SF               1.618e+01  1.004e+01   1.611  0.10736    
+## Bsmt_Unf_SF                -2.087e+01  1.723e+00 -12.116  < 2e-16 ***
+## Mas_Vnr_Area                1.046e+01  4.229e+00   2.473  0.01353 *  
+## Garage_Cars                 4.229e+03  1.893e+03   2.234  0.02563 *  
+## Garage_Area                 7.769e+00  6.497e+00   1.196  0.23195    
+## Year_Built                  3.251e+02  3.130e+01  10.388  < 2e-16 ***
+## TotRms_AbvGrd              -3.838e+03  6.922e+02  -5.545 3.51e-08 ***
+## Full_Bath                  -4.341e+03  1.655e+03  -2.622  0.00883 ** 
+## Overall_QualAverage        -5.013e+03  1.735e+03  -2.890  0.00391 ** 
+## Overall_QualBelow_Average  -1.280e+04  2.677e+03  -4.782 1.92e-06 ***
+## Overall_QualExcellent       7.261e+04  5.381e+03  13.494  < 2e-16 ***
+## Overall_QualFair           -1.115e+04  5.240e+03  -2.127  0.03356 *  
+## Overall_QualGood            1.226e+04  1.950e+03   6.287 4.30e-10 ***
+## Overall_QualVery_Excellent  1.304e+05  8.803e+03  14.810  < 2e-16 ***
+## Overall_QualVery_Good       3.798e+04  2.741e+03  13.852  < 2e-16 ***
+## Kitchen_QualFair           -2.663e+04  6.325e+03  -4.210 2.71e-05 ***
+## Kitchen_QualGood           -1.879e+04  4.100e+03  -4.582 5.01e-06 ***
+## Kitchen_QualTypical        -2.677e+04  4.281e+03  -6.252 5.37e-10 ***
+## Fireplaces                  1.138e+04  2.257e+03   5.043 5.18e-07 ***
+## Fireplace_QuFair           -7.207e+03  6.823e+03  -1.056  0.29106    
+## Fireplace_QuGood            6.070e+02  5.833e+03   0.104  0.91713    
+## Fireplace_QuNo_Fireplace    3.394e+03  6.298e+03   0.539  0.59002    
+## Fireplace_QuPoor           -5.185e+03  7.399e+03  -0.701  0.48362    
+## Fireplace_QuTypical        -6.398e+03  5.897e+03  -1.085  0.27814    
+## Exter_QualFair             -3.854e+04  8.383e+03  -4.598 4.66e-06 ***
+## Exter_QualGood             -1.994e+04  5.585e+03  -3.569  0.00037 ***
+## Exter_QualTypical          -2.436e+04  5.874e+03  -4.147 3.57e-05 ***
+## Lot_Frontage                1.024e+02  1.905e+01   5.376 8.90e-08 ***
+## Lot_Area                    6.042e-01  7.864e-02   7.683 2.91e-14 ***
+## Longitude                  -3.481e+04  2.537e+04  -1.372  0.17016    
+## Latitude                    5.874e+04  3.483e+04   1.686  0.09193 .  
+## Misc_Val                    9.171e-01  1.003e+00   0.914  0.36071    
+## Year_Sold                  -6.455e+02  4.606e+02  -1.401  0.16132    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 22190 on 1401 degrees of freedom
+## Multiple R-squared:  0.9116, Adjusted R-squared:  0.9092 
+## F-statistic: 380.3 on 38 and 1401 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{lm.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lm.fit, }\AttributeTok{newdata =}\NormalTok{ test\_df)}
 \end{Highlighting}
 \end{Shaded}
@@ -360,13 +416,20 @@ model?}\label{a-fit-a-linear-model-using-least-squares-on-the-training-data.-is-
 \begin{Highlighting}[]
 \CommentTok{\# test error}
 \NormalTok{test\_error\_lm }\OtherTok{=} \FunctionTok{mean}\NormalTok{((lm.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{test\_error\_lm }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_lm, }\DecValTok{1}\NormalTok{)}
+\NormalTok{test\_error\_lm}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{The potential disadvantage of this model might be the
-correlation between different predictors.Although the adjusted R square
-is high in this model, there might be over fitting in this model.}
+\begin{verbatim}
+## [1] 447287652
+\end{verbatim}
+
+**The test error of the LS linear model is
+\ensuremath{4.4728765\times 10^{8}}. ** \textbf{The potential
+disadvantage of this model might be the correlation between different
+predictors.Although the adjusted R square is high in this model, there
+might be over fitting in this model. And the p-value of this model is
+less than 0.05, which means this model is not reliable.}
 
 \hypertarget{b-fit-a-lasso-model-on-the-training-data-and-report-the-test-error.-when-the-1se-rule-is-applied-how-many-predictors-are-included-in-the-model}{%
 \subsection{b) Fit a lasso model on the training data and report the
@@ -376,14 +439,67 @@ model?}\label{b-fit-a-lasso-model-on-the-training-data-and-report-the-test-error
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ctrl1 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{, }\AttributeTok{selectionFunction =} \StringTok{"best"}\NormalTok{)}
-\NormalTok{lasso.fit }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(x, y,}
+\CommentTok{\# check the range of lambda}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{cv.lasso }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(x, y, }
+                      \AttributeTok{alpha =} \DecValTok{1}\NormalTok{, }
+                      \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)))}
+\FunctionTok{plot}\NormalTok{(cv.lasso)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8106_HW1_yt2785_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# fit the lasso model}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{lasso.fit.minse }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(x, y,}
                    \AttributeTok{method =} \StringTok{"glmnet"}\NormalTok{,}
                    \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \DecValTok{1}\NormalTok{, }
-                                          \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{5}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{length=}\DecValTok{100}\NormalTok{))),}
+                                          \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{length=}\DecValTok{100}\NormalTok{))),}
+                   \AttributeTok{trControl =}\NormalTok{ ctrl2)}
+\NormalTok{lasso.fit.minse}\SpecialCharTok{$}\NormalTok{bestTune}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    alpha   lambda
+## 23     1 61.01447
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(lasso.fit.minse, }\AttributeTok{xTrans =}\NormalTok{ log)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8106_HW1_yt2785_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lasso.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lasso.fit.minse, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
+\CommentTok{\# test error}
+\NormalTok{test\_error\_lasso\_minse }\OtherTok{=} \FunctionTok{mean}\NormalTok{((lasso.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_lasso\_minse}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 440396463
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# apply the 1SE rule}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{lasso.fit}\FloatTok{.1}\NormalTok{se }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(x, y,}
+                   \AttributeTok{method =} \StringTok{"glmnet"}\NormalTok{,}
+                   \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \DecValTok{1}\NormalTok{, }
+                                          \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{3}\NormalTok{, }\AttributeTok{length=}\DecValTok{100}\NormalTok{))),}
                    \AttributeTok{trControl =}\NormalTok{ ctrl1)}
 
-\FunctionTok{summary}\NormalTok{(lasso.fit)}
+\FunctionTok{summary}\NormalTok{(lasso.fit}\FloatTok{.1}\NormalTok{se)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -411,24 +527,33 @@ model?}\label{b-fit-a-lasso-model-on-the-training-data-and-report-the-test-error
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{plot}\NormalTok{(lasso.fit, }\AttributeTok{xTrans =}\NormalTok{ log)}
+\NormalTok{precictor\_num }\OtherTok{=} \FunctionTok{sum}\NormalTok{((}\FunctionTok{coef}\NormalTok{(lasso.fit}\FloatTok{.1}\NormalTok{se}\SpecialCharTok{$}\NormalTok{finalModel, lasso.fit}\FloatTok{.1}\NormalTok{se}\SpecialCharTok{$}\NormalTok{bestTune}\SpecialCharTok{$}\NormalTok{lambda)) }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{)}
+\NormalTok{precictor\_num}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{p8106_HW1_yt2785_files/figure-latex/unnamed-chunk-4-1.pdf}
+\begin{verbatim}
+## [1] 30
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{lasso.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lasso.fit, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
+\NormalTok{lasso.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lasso.fit}\FloatTok{.1}\NormalTok{se, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
 \CommentTok{\# test error}
-\NormalTok{test\_error\_lasso }\OtherTok{=} \FunctionTok{mean}\NormalTok{((lasso.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{test\_error\_lasso }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_lasso, }\DecValTok{1}\NormalTok{)}
+\NormalTok{test\_error\_lasso\_1se }\OtherTok{=} \FunctionTok{mean}\NormalTok{((lasso.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_lasso\_1se}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{From the plot we can tell that when only 4 parameters are
-included, the RMES is minimized, so 4 predictors are included in the
-model when 1SE rule is applied.}
+\begin{verbatim}
+## [1] 421684149
+\end{verbatim}
+
+\textbf{From the first plot we can decide that lambda should be set
+between exp(8) to exp(3), 30 predictors are included in the model when
+1SE rule is applied. The test error of the minse lasso model is
+\ensuremath{4.4039646\times 10^{8}} and the The test error of the 1se
+lasso model is \ensuremath{4.2168415\times 10^{8}}}
 
 \hypertarget{c-fit-an-elastic-net-model-on-the-training-data.-report-the-selected-tuning-parameters-and-the-test-error.}{%
 \subsection{c) Fit an elastic net model on the training data. Report the
@@ -437,34 +562,55 @@ error.}\label{c-fit-an-elastic-net-model-on-the-training-data.-report-the-select
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{ctrl2 }\OtherTok{\textless{}{-}} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"repeatedcv"}\NormalTok{, }\AttributeTok{number =} \DecValTok{10}\NormalTok{, }\AttributeTok{repeats =} \DecValTok{5}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \NormalTok{enet.fit }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(x, y,}
                   \AttributeTok{method =} \StringTok{"glmnet"}\NormalTok{,}
-                  \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{length =} \DecValTok{21}\NormalTok{), }
-                                         \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{2}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{length =} \DecValTok{50}\NormalTok{))),}
+                  \AttributeTok{tuneGrid =} \FunctionTok{expand.grid}\NormalTok{(}\AttributeTok{alpha =} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{length =} \DecValTok{20}\NormalTok{), }
+                                         \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{4}\NormalTok{, }\AttributeTok{length =} \DecValTok{60}\NormalTok{))),}
                   \AttributeTok{trControl =}\NormalTok{ ctrl2)}
-\NormalTok{enet.fit}\SpecialCharTok{$}\NormalTok{bestTune}
+\NormalTok{enet.alpha.best }\OtherTok{=}\NormalTok{ enet.fit}\SpecialCharTok{$}\NormalTok{bestTune}\SpecialCharTok{$}\NormalTok{alpha}
+\NormalTok{enet.alpha.best}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##     alpha   lambda
-## 150   0.1 7.389056
+## [1] 0.05263158
 \end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#coef(enet.fit$finalModel, enet.fit$bestTune$lambda)}
-
-\NormalTok{enet.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(enet.fit, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
-\CommentTok{\# test error}
-\NormalTok{test\_error\_enet }\OtherTok{=} \FunctionTok{mean}\NormalTok{((enet.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{test\_error\_enet }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_enet, }\DecValTok{1}\NormalTok{)}
+\NormalTok{enet.lambda.best }\OtherTok{=}\NormalTok{ enet.fit}\SpecialCharTok{$}\NormalTok{bestTune}\SpecialCharTok{$}\NormalTok{lambda}
+\NormalTok{enet.lambda.best}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{The selected best parameter is alpha = 0.05 and lambda = 7.39.
-The test error is \ensuremath{4.4253784\times 10^{8}}.}
+\begin{verbatim}
+## [1] 585.7431
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(enet.fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{p8106_HW1_yt2785_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{enet.pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(enet.fit, }\AttributeTok{newdata =}\NormalTok{ test\_matrix)}
+\CommentTok{\# test error}
+\NormalTok{test\_error\_enet }\OtherTok{=} \FunctionTok{mean}\NormalTok{((enet.pred }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{test\_error\_enet}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 438429127
+\end{verbatim}
+
+\textbf{The selected best parameter is alpha = 0.0526316 and lambda =
+585.7431342. The test error is \ensuremath{4.3842913\times 10^{8}}.}
 
 \hypertarget{d-fit-a-partial-least-squares-model-on-the-training-data-and-report-the-test-error.-how-many-components-are-included-in-your-model}{%
 \subsection{d) Fit a partial least squares model on the training data
@@ -473,6 +619,7 @@ model?}\label{d-fit-a-partial-least-squares-model-on-the-training-data-and-repor
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
 \NormalTok{pls.mod }\OtherTok{\textless{}{-}} \FunctionTok{plsr}\NormalTok{(Sale\_Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ ., }
                 \AttributeTok{data =}\NormalTok{ train\_df, }
                 \AttributeTok{scale =} \ConstantTok{TRUE}\NormalTok{,  }
@@ -491,23 +638,23 @@ model?}\label{d-fit-a-partial-least-squares-model-on-the-training-data-and-repor
 ## VALIDATION: RMSEP
 ## Cross-validated using 10 random segments.
 ##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
-## CV           73685    33483    27934    25150    23974    23316    23145
-## adjCV        73685    33473    27898    25077    23907    23253    23088
+## CV           73685    33523    28388    25616    24536    23917    23693
+## adjCV        73685    33517    28325    25518    24434    23814    23601
 ##        7 comps  8 comps  9 comps  10 comps  11 comps  12 comps  13 comps
-## CV       23057    23005    22984     22997     22997     22990     22998
-## adjCV    23001    22952    22931     22940     22939     22932     22939
+## CV       23499    23465    23502     23512     23508     23504     23507
+## adjCV    23418    23386    23417     23424     23419     23415     23417
 ##        14 comps  15 comps  16 comps  17 comps  18 comps  19 comps  20 comps
-## CV        23007     23009     23015     23018     23019     23026     23030
-## adjCV     22948     22949     22954     22958     22959     22965     22969
+## CV        23520     23519     23529     23530     23536     23532     23542
+## adjCV     23429     23428     23437     23439     23444     23441     23449
 ##        21 comps  22 comps  23 comps  24 comps  25 comps  26 comps  27 comps
-## CV        23032     23034     23033     23034     23034     23034     23036
-## adjCV     22970     22972     22971     22972     22972     22972     22974
+## CV        23549     23553     23549     23550     23551     23552     23553
+## adjCV     23456     23459     23456     23457     23457     23459     23460
 ##        28 comps  29 comps  30 comps  31 comps  32 comps  33 comps  34 comps
-## CV        23036     23036     23036     23036     23036     23036     23036
-## adjCV     22974     22974     22974     22974     22974     22974     22974
+## CV        23554     23554     23554     23554     23554     23554     23554
+## adjCV     23461     23461     23461     23461     23461     23461     23461
 ##        35 comps  36 comps  37 comps  38 comps  39 comps
-## CV        23036     23036     23036     23036     23081
-## adjCV     22974     22974     22974     22974     23003
+## CV        23554     23554     23554     23554     23860
+## adjCV     23461     23461     23461     23461     23312
 ## 
 ## TRAINING: % variance explained
 ##             1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
@@ -550,8 +697,8 @@ model?}\label{d-fit-a-partial-least-squares-model-on-the-training-data-and-repor
 \end{Shaded}
 
 \begin{verbatim}
-## 9 comps 
-##       9
+## 8 comps 
+##       8
 \end{verbatim}
 
 \begin{Shaded}
@@ -560,11 +707,16 @@ model?}\label{d-fit-a-partial-least-squares-model-on-the-training-data-and-repor
                       \AttributeTok{ncomp =}\NormalTok{ ncomp.cv)}
 \CommentTok{\# test MSE}
 \NormalTok{test\_error\_pls }\OtherTok{=} \FunctionTok{mean}\NormalTok{((predy2.pls }\SpecialCharTok{{-}}\NormalTok{ test\_df}\SpecialCharTok{$}\NormalTok{Sale\_Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
-\NormalTok{test\_error\_pls }\OtherTok{=} \FunctionTok{round}\NormalTok{(test\_error\_pls, }\DecValTok{1}\NormalTok{)}
+\NormalTok{test\_error\_pls}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{14 components are included in the model.}
+\begin{verbatim}
+## [1] 440217938
+\end{verbatim}
+
+\textbf{8 components are included in the model. The test error of this
+model is \ensuremath{4.4021794\times 10^{8}}.}
 
 \hypertarget{e-which-model-will-you-choose-for-predicting-the-response-why}{%
 \subsection{e) Which model will you choose for predicting the response?
@@ -572,25 +724,37 @@ Why?}\label{e-which-model-will-you-choose-for-predicting-the-response-why}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{mse }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(test\_error\_lm, test\_error\_lasso, test\_error\_enet, test\_error\_pls)}
-\NormalTok{name }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"lm"}\NormalTok{, }\StringTok{"lasso"}\NormalTok{, }\StringTok{"enet"}\NormalTok{, }\StringTok{"pls"}\NormalTok{)}
+\NormalTok{mse }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(test\_error\_lasso\_minse, test\_error\_lasso\_1se, test\_error\_enet, test\_error\_pls)}
+\NormalTok{name }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Lasso(minse)"}\NormalTok{, }\StringTok{"Lasso(1se)"}\NormalTok{, }\StringTok{"Elastic"}\NormalTok{, }\StringTok{"PLS"}\NormalTok{)}
 \NormalTok{MSE\_df }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(name, mse)}
-\FunctionTok{colnames}\NormalTok{(MSE\_df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"model"}\NormalTok{, }\StringTok{"MSE"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(MSE\_df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Model"}\NormalTok{, }\StringTok{"MSE"}\NormalTok{)}
 \NormalTok{MSE\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(MSE\_df)}
 \NormalTok{MSE\_df}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##   model         MSE
-## 1    lm 447287651.9
-## 2 lasso 437989359.2
-## 3  enet 442537839.8
-## 4   pls 442142569.1
+##          Model              MSE
+## 1 Lasso(minse) 440396462.693672
+## 2   Lasso(1se)  421684148.75126
+## 3      Elastic 438429126.893179
+## 4          PLS 440217937.923444
 \end{verbatim}
 
-\textbf{I will choose the lasso model based on 1SE rule since it's
-average MSE is the smallest among these 3 models, which means it has the
-highest accuracy and efficiency.}
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{which.min}\NormalTok{(MSE\_df}\SpecialCharTok{$}\NormalTok{MSE)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\textbf{From question a) we can consider that the LS linear model is not
+reliable, so I decided not to include it in the comparision. I will
+choose the lasso model which applied 1SE since it's MSE is the smallest
+among these models, which means it has the highest accuracy and
+efficiency.}
 
 \end{document}
